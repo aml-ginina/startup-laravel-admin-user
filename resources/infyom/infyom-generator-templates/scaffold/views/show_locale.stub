@@ -1,0 +1,44 @@
+@extends('$VIEW_PREFIX$layouts.app')
+
+@section('title', __('crud.show') . ' ' . __('models/$MODEL_NAME_PLURAL_CAMEL$.singular'))
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}">@lang('models/$MODEL_NAME_PLURAL_CAMEL$.plural')</a></li>
+<li class="breadcrumb-item active">@lang('crud.show')</li>
+@endsection
+
+@section('top-buttons')
+<a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$) }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-edit"></i> @lang('crud.edit')</a>
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <table class="table table-hover">
+                        <tbody>
+                            @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
+                            
+
+<!-- Created At Field -->
+<tr>
+    <td>@lang('crud.created_at')</td>
+    <td>{{ $$MODEL_NAME_CAMEL$->created_at }}</td>
+</tr>
+
+<!-- Updated At Field -->
+<tr>
+    <td>@lang('crud.updated_at')</td>
+    <td>{{ $$MODEL_NAME_CAMEL$->updated_at }}</td>
+</tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-dark" href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}">@lang('crud.back')</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
