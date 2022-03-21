@@ -26,4 +26,9 @@ class HomeController extends AppBaseController
     {
         return view('admin.home');
     }
+
+    public function translation()
+    {
+        return view('admin.translation');
+    }
 }

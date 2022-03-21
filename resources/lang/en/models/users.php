@@ -3,8 +3,7 @@
 return array (
   'singular' => 'User',
   'plural' => 'Users',
-  'fields' => 
-  array (
+  'fields' => [
     'id' => 'Id',
     'name' => 'Name',
     'email' => 'Email',
@@ -18,5 +17,5 @@ return array (
     'remember_token' => 'Remember Token',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
-  ),
+  ],
 );

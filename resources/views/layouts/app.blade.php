@@ -16,8 +16,9 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('elite/horizontal/dist/css/style.min.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('elite/rtl/dist/css/style.min.css') }}" rel="stylesheet"> --}}
-
+    @if(App::isLocale('ar'))
+    <link href="{{ asset('css/vertical-rtl.css') }}" rel="stylesheet">
+    @endif
     @stack('page_css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

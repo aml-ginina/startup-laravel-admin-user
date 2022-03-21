@@ -2,19 +2,21 @@
     <table id="notifications-table" class="table display table-bordered table-striped no-wrap">
         <thead>
             <tr>
+                <th>@lang('crud.id')</th>
                 <th>@lang('models/notifications.singular')</th>
-                <th>@lang('models/notifications.fields.read_at')</th>
+                <th>@lang('models/notifications.fields.status')</th>
                 <th>@lang('crud.action')</th>
             </tr>
         </thead>
         <tbody>
             @foreach($notifications as $notification)
             <tr>
+                <td>{{ $notification->id }}</td>
                 <td>
                     <a href="{{ route('admin.notifications.show', $notification->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">
-                                <i class="{{ $notification->icon }}"></i> 
+                                @if(!is_null($notification->icon)) <i class="{{ $notification->icon }} text-{{ $notification->type }}"></i> @endif
                                 {{ $notification->title }}
                             </h5>
                             <small>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans() }}</small>
@@ -65,7 +67,8 @@
     $(function () {
         // responsive table
         $('#notifications-table').DataTable({
-            responsive: true
+            responsive: true,
+            "order": [[ 0, "desc" ]]
         });
     });
 </script>

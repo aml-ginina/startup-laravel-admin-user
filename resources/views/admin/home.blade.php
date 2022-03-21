@@ -16,10 +16,6 @@
 <li class="breadcrumb-item active">@lang('msg.dashboard')</li>
 @endsection
 
-{{-- @section('top-buttons')
-<button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
-@endsection --}}
-
 @section('content')
     <!-- ============================================================== -->
     <!-- Info box -->

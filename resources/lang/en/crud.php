@@ -1,19 +1,19 @@
 <?php
 
-return [
-
-    'add_new'      => 'Add New',
-    'cancel'       => 'Cancel',
-    'save'         => 'Save',
-    'edit'         => 'Edit',
-    'create'       => 'Create',
-    'show'         => 'Show',
-    'detail'       => 'Detail',
-    'back'         => 'Back',
-    'action'       => 'Action',
-    'id'           => 'Id',
-    'created_at'   => 'Created At',
-    'updated_at'   => 'Updated At',
-    'deleted_at'   => 'Deleted At',
-    'are_you_sure' => 'Are you sure?',
-];
+return array (
+  'action' => 'Action',
+  'add_new' => 'Add New',
+  'are_you_sure' => 'Are you sure?',
+  'back' => 'Back',
+  'cancel' => 'Cancel',
+  'create' => 'Create',
+  'created_at' => 'Created At',
+  'deleted_at' => 'Deleted At',
+  'detail' => 'Detail',
+  'edit' => 'Edit',
+  'id' => 'Id',
+  'reply' => 'Reply',
+  'save' => 'Save',
+  'show' => 'Show',
+  'updated_at' => 'Updated At',
+);

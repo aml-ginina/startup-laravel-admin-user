@@ -19,19 +19,6 @@
                     <table class="table table-hover">
                         <tbody>
                             @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show_fields')
-                            
-
-<!-- Created At Field -->
-<tr>
-    <td>@lang('crud.created_at')</td>
-    <td>{{ $$MODEL_NAME_CAMEL$->created_at }}</td>
-</tr>
-
-<!-- Updated At Field -->
-<tr>
-    <td>@lang('crud.updated_at')</td>
-    <td>{{ $$MODEL_NAME_CAMEL$->updated_at }}</td>
-</tr>
                         </tbody>
                     </table>
                 </div>

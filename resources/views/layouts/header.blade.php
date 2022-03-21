@@ -28,6 +28,8 @@
                 @include('layouts.header.messages')
 
                 @include('layouts.header.mega_menu')
+
+                @include('layouts.header.locale')
                 
                 @include('layouts.header.user_dropdown')
                 

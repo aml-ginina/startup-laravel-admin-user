@@ -12,7 +12,7 @@
 
 <!-- Active Field -->
 <tr>
-    <th> @lang('models/admins.fields.active') </th>
+    <th> @lang('models/admins.fields.status') </th>
     <td>{!! $admin->active_span !!}</td>
 </tr>
 

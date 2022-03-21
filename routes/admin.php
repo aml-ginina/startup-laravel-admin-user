@@ -20,12 +20,16 @@ Route::middleware('auth:admin')->group(function ()
     Route::post('/profile', 'ProfileController@update')->name('profile.settings');
     Route::post('/password', 'ProfileController@password')->name('profile.password');
 
+    Route::get('translation', 'HomeController@translation')->name('translation');
+
     Route::resource('admins', 'AdminController');
     Route::resource('users', 'UserController');
     Route::resource('notifications', 'NotificationController')->except('edit');
-    
+    Route::resource('providers', 'ProviderController');
 });
 
 Route::fallback(function () {
     return abort(404);
 });
+
+Route::resource('contacts', 'ContactController');

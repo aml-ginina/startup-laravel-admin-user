@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Password;
@@ -56,5 +57,15 @@ class ForgotPasswordController extends Controller
     protected function validateEmail(Request $request)
     {
         $request->validate(['email' => 'required|email']);
+    }
+
+    /**
+     * Get the guard to be used during authentication
+     * after password reset.
+     * 
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    public function guard(){
+        return Auth::guard('admin');
     }
 }

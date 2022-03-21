@@ -1,5 +1,4 @@
 $(document).on('click', '.btn-confirm', function(e) {
-  console.log('confirm');
     e.preventDefault();
     var form = $(this).closest('form'),
         title = $(this).data('title'),

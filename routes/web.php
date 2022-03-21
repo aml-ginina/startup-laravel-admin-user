@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Set Locale Route
+Route::get('setlocale/{locale}', 'HomeController@setLocale')->name('localization');
+
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/profile', 'ProfileController@index')->name('profile.index');

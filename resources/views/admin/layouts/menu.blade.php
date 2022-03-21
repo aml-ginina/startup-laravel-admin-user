@@ -19,19 +19,35 @@
 <li> 
     <a class="waves-effect waves-dark" href="{{ route('admin.home') }}" aria-expanded="false">
         <i class="icon-speedometer"></i>
-        <span class="hide-menu">@lang('msg.dashboard') <span class="badge badge-pill badge-cyan ml-auto">4</span></span>
+        <span class="hide-menu">
+            @lang('msg.dashboard') 
+            {{-- <span class="badge badge-pill badge-cyan ml-auto">4</span> --}}
+        </span>
     </a>
 </li>
 <li class="nav-small-cap">--- @lang('msg.app_users')</li>
 <li class="@if(Request::is('admin/admins*')) active @endif"> 
     <a class="waves-effect waves-dark" href="{{ route('admin.admins.index') }}" aria-expanded="false">
-        <i class="icon-user"></i>
+        <i class="icon-shield"></i>
         <span class="hide-menu">
             @lang('models/admins.plural')
             {{-- <span class="badge badge-pill badge-cyan ml-auto">4</span> --}}
         </span>
     </a>
 </li>
+
+<li class="@if(Request::is('admin/providers*')) active @endif"> 
+    <a class="waves-effect waves-dark" href="{{ route('admin.providers.index') }}" aria-expanded="false">
+        <i class="icon-user"></i>
+        <span class="hide-menu">
+            @lang('models/providers.plural')
+            @if(($menu_providers_count = App\Models\Provider::where('approve', 0)->count()) > 0)
+            <span class="badge badge-pill badge-warning ml-auto">{{ $menu_providers_count }}</span>
+            @endif
+        </span>
+    </a>
+</li>
+
 <li class="@if(Request::is('admin/users*')) active @endif"> 
     <a class="waves-effect waves-dark" href="{{ route('admin.users.index') }}" aria-expanded="false">
         <i class="icon-people"></i>
@@ -49,7 +65,37 @@
         <i class="icon-bell"></i>
         <span class="hide-menu">
             @lang('models/notifications.plural')
-            {{-- <span class="badge badge-pill badge-cyan ml-auto">4</span> --}}
+            @if(($menu_notifications_count = Auth::guard('admin')->user()->getNotifications(0)->count()) > 0)
+            <span class="badge badge-pill badge-cyan ml-auto">{{ $menu_notifications_count }}</span>
+            @endif
         </span>
     </a>
 </li>
+
+<li class="@if(Request::is('admin/contacts*')) active @endif"> 
+    <a class="waves-effect waves-dark" href="{{ route('admin.contacts.index') }}" aria-expanded="false">
+        <i class="icon-envelope"></i>
+        <span class="hide-menu">
+            @lang('models/contacts.plural')
+            @if(($menu_contacts_count = App\Models\Contact::where('read_at', null)->count()) > 0)
+            <span class="badge badge-pill badge-cyan ml-auto">{{ $menu_contacts_count }}</span>
+            @endif
+        </span>
+    </a>
+</li>
+
+<li class="nav-small-cap">--- @lang('msg.settings')</li>
+
+<li class="@if(Request::is('admin/translation*')) active @endif"> 
+    <a class="waves-effect waves-dark" href="{{ route('admin.translation') }}" aria-expanded="false">
+        <i class="icon-globe"></i>
+        <span class="hide-menu">
+            @lang('msg.translation')
+            @if(($menu_notifications_count = Auth::guard('admin')->user()->getNotifications(0)->count()) > 0)
+            <span class="badge badge-pill badge-cyan ml-auto">{{ $menu_notifications_count }}</span>
+            @endif
+        </span>
+    </a>
+</li>
+
+

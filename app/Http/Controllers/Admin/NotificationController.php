@@ -57,14 +57,9 @@ class NotificationController extends AppBaseController
     {
         $input = $request->except('users', 'admins');
 
-        if($request->to == 'admin') {
-            foreach($request->admins as $admin_id) {
-                $input['admin_id'] = $admin_id;
-                $notification = $this->notificationRepository->create($input);
-            }
-        } elseif($request->to == 'user') {
-            foreach($request->users as $user_id) {
-                $input['user_id'] = $user_id;
+        if(!is_null($ids = $request["{$input['to']}s"])) {
+            foreach($ids as $id) {
+                $input["{$input['to']}_id"] = $id;
                 $notification = $this->notificationRepository->create($input);
             }
         }

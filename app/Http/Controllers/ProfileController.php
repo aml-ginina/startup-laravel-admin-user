@@ -40,7 +40,7 @@ class ProfileController extends AppBaseController
 
     public function update(UpdateUserRequest $request)
     {
-        $input = $request->only(['name', 'email', 'phone', 'image']);
+        $input = $request->only(['name', 'email', 'phone']);
         $user = Auth::user();
 
         if ($request->hasFile('image')) {

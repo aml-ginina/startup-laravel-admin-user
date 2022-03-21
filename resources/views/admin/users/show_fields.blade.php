@@ -1,43 +1,43 @@
 <!-- Name Field -->
 <tr>
-    <td>@lang('models/users.fields.name')</td>
+    <th>@lang('models/users.fields.name')</th>
     <td>{{ $user->name }}</td>
 </tr>
 
 <!-- Email Field -->
 <tr>
-    <td>@lang('models/users.fields.email')</td>
+    <th>@lang('models/users.fields.email')</th>
     <td>{{ $user->email }}</td>
 </tr>
 
 <!-- Phone Field -->
 <tr>
-    <td>@lang('models/users.fields.phone')</td>
+    <th>@lang('models/users.fields.phone')</th>
     <td>{{ $user->phone }}</td>
 </tr>
 
 <!-- Image Field -->
 <tr>
-    <td>@lang('models/users.fields.image')</td>
+    <th>@lang('models/users.fields.image')</th>
     <td><img src="{{ asset('images/users/'.$user->image) }}" alt="" /></td>
 </tr>
 
 <!-- Notes Field -->
 <tr>
-    <td>@lang('models/users.fields.notes')</td>
+    <th>@lang('models/users.fields.notes')</th>
     <td>{{ $user->notes }}</td>
 </tr>
 
 <!-- Block Field -->
 <tr>
-    <td>@lang('models/users.fields.block')</td>
+    <th>@lang('models/users.fields.block')</th>
     <td>{!! $user->block_span !!}</td>
 </tr>
 
 @if($user->block)
 <!-- Block Notes Field -->
 <tr>
-    <td>@lang('models/users.fields.block_notes')</td>
+    <th>@lang('models/users.fields.block_notes')</th>
     <td>{{ $user->block_notes }}</td>
 </tr>
 @endif

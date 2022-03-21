@@ -25,7 +25,6 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $rules = User::$update_rules;
-        
         foreach($rules as $i => $r) {
             foreach($r as $k => $rule) {
                 if(strpos($rule, 'unique') !== false) {

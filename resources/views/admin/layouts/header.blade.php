@@ -23,6 +23,8 @@
                 @include('admin.layouts.header.notifications')
                 
                 @include('admin.layouts.header.messages')
+
+                @include('admin.layouts.header.locale')
                 
                 @include('admin.layouts.header.user_dropdown')
                 

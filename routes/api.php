@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('admins', App\Http\Controllers\API\AdminAPIController::class);
 Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
 Route::resource('notifications', App\Http\Controllers\API\NotificationAPIController::class);
+Route::resource('providers', App\Http\Controllers\API\ProviderAPIController::class);
+
+Route::resource('contacts', App\Http\Controllers\API\ContactAPIController::class);

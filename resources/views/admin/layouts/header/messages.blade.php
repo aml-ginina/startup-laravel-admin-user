@@ -4,7 +4,9 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
         <i class="ti-email"></i>
+        @if(App\Models\Contact::where('read_at', null)->count() > 0)
         <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+        @endif
     </a>
     <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown" aria-labelledby="2">
         <ul>
@@ -13,34 +15,21 @@
             </li>
             <li>
                 <div class="message-center">
+                    @foreach(App\Models\Contact::where('read_at', null)->get() as $contact)
                     <!-- Message -->
-                    <a href="javascript:void(0)">
-                        <div class="user-img"> <img src="{{ asset('elite/assets/images/users/1.jpg') }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                    <a href="{{ route('admin.contacts.show', $contact->id) }}">
                         <div class="mail-contnet">
-                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                            <h5>{{ substr($contact->subject, 0, 20) . (Str::length($contact->subject) > 20 ? ' ..' : '') }}</h5> 
+                            <span class="mail-desc">{{ $contact->message }}
+                            </span> 
+                            <span class="time">{{ Carbon\Carbon::parse($contact->created_at)->format('H:i a') }}</span>
+                        </div>
                     </a>
-                    <!-- Message -->
-                    <a href="javascript:void(0)">
-                        <div class="user-img"> <img src="{{ asset('elite/assets/images/users/2.jpg') }}" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                        <div class="mail-contnet">
-                            <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
-                    </a>
-                    <!-- Message -->
-                    <a href="javascript:void(0)">
-                        <div class="user-img"> <img src="{{ asset('elite/assets/images/users/3.jpg') }}" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                        <div class="mail-contnet">
-                            <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                    </a>
-                    <!-- Message -->
-                    <a href="javascript:void(0)">
-                        <div class="user-img"> <img src="{{ asset('elite/assets/images/users/4.jpg') }}" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                        <div class="mail-contnet">
-                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                    </a>
+                    @endforeach
                 </div>
             </li>
             <li>
-                <a class="nav-link text-center link" href="javascript:void(0);"> <strong>@lang('msg.see_all_messages')</strong> <i class="fa fa-angle-right"></i> </a>
+                <a class="nav-link text-center link" href="{{ route('admin.contacts.index') }}"> <strong>@lang('msg.see_all_messages')</strong> <i class="fa fa-angle-right"></i> </a>
             </li>
         </ul>
     </div>

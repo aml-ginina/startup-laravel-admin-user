@@ -31,8 +31,9 @@
 <div class="form-group">
     {!! Form::label('to', __('models/notifications.fields.to').'*') !!}
     {!! Form::select('to', [
-        'admin' => __('models/notifications.to.admin'),
-        'user' => __('models/notifications.to.user')
+        'admin' => __('models/admins.singular'),
+        'user' => __('models/users.singular'),
+        'provider' => __('models/providers.singular')
         ], null, ['class' => 'form-control selectpicker' . ($errors->has('to') ? ' is-invalid' : '')]) !!}
 
     @error('to')
@@ -40,10 +41,10 @@
     @enderror
 </div>
 
-<div class="form-group">
+<div class="form-group to-div" id="admin-div">
     {!! Form::label('admin_id', __('models/notifications.fields.admin_id').':') !!}
     <div class="custom-control custom-checkbox d-inline-block float-right">
-        {!! Form::checkbox('all_admins', '1', null, ['class' => 'custom-control-input', 'id' => 'all-admins']) !!}
+        {!! Form::checkbox('all_admins', '1', null, ['class' => 'custom-control-input check-all', 'id' => 'all-admins']) !!}
         {!! Form::label('all-admins', __('models/notifications.to.all_admins'), ['class' => 'custom-control-label']) !!}
     </div>
     {!! Form::select('admins[]', App\Models\Admin::where('id', '!=', Auth::guard('admin')->user()->id)->pluck('name', 'id'), null, ['class' => 'form-control custom-select select2' . ($errors->has('admins') ? ' is-invalid' : ''), 'multiple' => true, 'id' => 'admin_id']) !!}
@@ -52,14 +53,26 @@
     @enderror
 </div>
 
-<div class="form-group">
+<div class="form-group to-div" id="user-div">
     {!! Form::label('user_id', __('models/notifications.fields.user_id').':') !!}
     <div class="custom-control custom-checkbox d-inline-block float-right">
-        {!! Form::checkbox('all_users', '1', null, ['class' => 'custom-control-input', 'id' => 'all-users']) !!}
+        {!! Form::checkbox('all_users', '1', null, ['class' => 'custom-control-input check-all', 'id' => 'all-users']) !!}
         {!! Form::label('all-users', __('models/notifications.to.all_users'), ['class' => 'custom-control-label']) !!}
     </div>
     {!! Form::select('users[]', App\Models\User::pluck('name', 'id'), null, ['class' => 'form-control custom-select select2' . ($errors->has('users') ? ' is-invalid' : ''), 'multiple' => true, 'id' => 'user_id']) !!}
     @error('users')
+    <span class="invalid-feedback"> {{ $message }} </span>
+    @enderror
+</div>
+
+<div class="form-group to-div" id="provider-div">
+    {!! Form::label('provider_id', __('models/notifications.fields.provider_id').':') !!}
+    <div class="custom-control custom-checkbox d-inline-block float-right">
+        {!! Form::checkbox('all_providers', '1', null, ['class' => 'custom-control-input check-all', 'id' => 'all-providers']) !!}
+        {!! Form::label('all-providers', __('models/notifications.to.all_providers'), ['class' => 'custom-control-label']) !!}
+    </div>
+    {!! Form::select('providers[]', App\Models\Provider::pluck('name', 'id'), null, ['class' => 'form-control custom-select select2' . ($errors->has('providers') ? ' is-invalid' : ''), 'multiple' => true, 'id' => 'provider_id']) !!}
+    @error('providers')
     <span class="invalid-feedback"> {{ $message }} </span>
     @enderror
 </div>
@@ -103,19 +116,12 @@
         $('.select2').select2();
         $('.selectpicker').selectpicker();
 
-        $("#all-admins").on('change', function() {
-            if($("#all-admins").is(':checked')) {
-                $("#admin_id").select2('destroy').find('option').prop('selected', 'selected').end().select2();
+        $(".check-all").on('change', function() {
+            let select = $(this).closest('div').parent().find('select');
+            if($(this).is(':checked')) {
+                select.select2('destroy').find('option').prop('selected', 'selected').end().select2();
             } else {
-                $("#admin_id").select2('destroy').find('option').prop('selected', false).end().select2();
-            }
-        });
-
-        $("#all-users").on('change', function() {
-            if($("#all-users").is(':checked')) {
-                $("#user_id").select2('destroy').find('option').prop('selected', 'selected').end().select2();
-            } else {
-                $("#user_id").select2('destroy').find('option').prop('selected', false).end().select2();
+                select.select2('destroy').find('option').prop('selected', false).end().select2();
             }
         });
 
@@ -123,18 +129,13 @@
             adminOrUser();
         })
 
-        function adminOrUser() {
-            if($('#to').val() == 'admin') {
-                $('#admin_id').closest('div').slideDown();
-                $('#user_id').closest('div').hide();
-            } else {
-                $('#user_id').closest('div').slideDown();
-                $('#admin_id').closest('div').hide();
-            }
-        }
-
         $(function() {
             adminOrUser();
         })
+
+        function adminOrUser() {
+            $('.to-div').hide();
+            $(`#${$('#to').val()}-div`).slideDown();
+        }
     </script>
 @endpush

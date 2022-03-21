@@ -21,13 +21,15 @@ class CreateNotificationsTable extends Migration
             $table->string('url')->nullable();
             $table->string('icon', 100)->nullable();
             $table->enum('type', ['primary','info','success','warning','danger']);
-            $table->enum('to', ['admin','user']);
+            $table->enum('to', ['admin','user','provider']);
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('provider_id')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
             $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('provider_id')->references('id')->on('providers')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

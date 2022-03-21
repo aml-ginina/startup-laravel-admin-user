@@ -21,16 +21,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class Admin extends Authenticatable
 {
-
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     public $table = 'admins';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
-
-
 
     public $fillable = [
         'name',
@@ -77,22 +73,6 @@ class Admin extends Authenticatable
         'password' => 'nullable|string|min:8|max:255',
         'active' => 'nullable|boolean'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function adminPermissions()
-    {
-        return $this->hasMany(\App\Models\AdminPermission::class, 'admin_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function adminRoles()
-    {
-        return $this->hasMany(\App\Models\AdminRole::class, 'admin_id');
-    }
 
     public function getActiveSpanAttribute()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('home');
     }
 
     /**
@@ -34,5 +35,10 @@ class HomeController extends Controller
     public function dashboard()
     {
         return view('dashboard');
+    }
+
+    public function setLocale($locale) {
+        Session::put('locale', $locale);
+        return redirect()->back();   
     }
 }

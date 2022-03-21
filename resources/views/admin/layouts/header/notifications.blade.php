@@ -11,7 +11,7 @@
     <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
         <ul>
             <li>
-                <div class="drop-title">Notifications</div>
+                <div class="drop-title">@lang('models/notifications.plural')</div>
             </li>
             <li>
                 <div class="message-center">

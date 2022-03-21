@@ -5,7 +5,7 @@
                 <th>@lang('crud.id')</th>
                 <th>@lang('models/admins.fields.name')</th>
                 <th>@lang('models/admins.fields.email')</th>
-                <th>@lang('models/admins.fields.active')</th>
+                <th>@lang('models/admins.fields.status')</th>
                 <th>@lang('crud.action')</th>
             </tr>
         </thead>

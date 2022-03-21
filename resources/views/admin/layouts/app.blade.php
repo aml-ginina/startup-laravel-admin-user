@@ -16,11 +16,14 @@
 	<link rel="stylesheet" href="{{ asset('elite/assets/node_modules/toast-master/css/jquery.toast.css') }}">
     @stack('third_party_stylesheets')
 
-    <!-- Custom CSS -->
+    @if(App::isLocale('ar'))
+    <link href="{{ asset('elite/dist/css/style-rtl.min.css') }}" rel="stylesheet">
+    @else
     <link href="{{ asset('elite/dist/css/style.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('elite/rtl/dist/css/style.min.css') }}" rel="stylesheet"> --}}
+    @endif
 
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @stack('page_css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,7 +88,7 @@
                 @if(View::hasSection('top-buttons'))
                 <div class="row">
                     <div class="col-12">
-                        <div class="float-right p-b-20">
+                        <div class="float-right p-b-10">
                             @yield('top-buttons')
                         </div>
                     </div>
