@@ -17,7 +17,7 @@
 @endsection
 
 {{-- @section('top-buttons')
-<button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+<button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> Create New</button>
 @endsection --}}
 
 @section('content')

@@ -6,7 +6,8 @@
                 <th>@lang('models/contacts.fields.message')</th>
                 <th>@lang('models/contacts.fields.email')</th>
                 <th>@lang('models/contacts.fields.name')</th>
-                <th>@lang('models/contacts.fields.status')</th>
+                <th>@lang('models/contacts.fields.read')</th>
+                <th>@lang('models/contacts.fields.reply')</th>
                 <th>@lang('crud.action')</th>
             </tr>
         </thead>
@@ -34,8 +35,16 @@
                     @if(!is_null($contact->read_at))
                     <span class="badge badge-success">@lang('models/contacts.read')</span>
                     @else
-                    <span class="badge badge-danger">@lang('models/contacts.unread')</span>
-                    @endif</td>
+                    <span class="badge badge-warning">@lang('models/contacts.unread')</span>
+                    @endif
+                </td>
+                <td>
+                    @if(!is_null($contact->reply_message))
+                    <span class="badge badge-success">@lang('models/contacts.replied')</span>
+                    @else
+                    <span class="badge badge-primary">@lang('models/contacts.unreplied')</span>
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('admin.contacts.edit', [$contact->id]) }}"
                         class='btn btn-info btn-sm'>

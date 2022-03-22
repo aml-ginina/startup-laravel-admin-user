@@ -16,4 +16,5 @@ return array (
   'save' => 'Save',
   'show' => 'Show',
   'updated_at' => 'Updated At',
+  'all' => 'All'
 );

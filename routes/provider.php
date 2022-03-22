@@ -18,7 +18,7 @@ Route::namespace('\App\Http\Controllers\Provider\Auth')->group(function() {
 
     //Verification Routes
     Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
-    Route::get('/email/verify/{id}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+    Route::get('/email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
     Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
 });
 

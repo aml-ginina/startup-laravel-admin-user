@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateContactRequest;
 use App\Repositories\ContactRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Contact;
 use Carbon\Carbon;
 use Flash;
 use Response;
@@ -34,8 +35,32 @@ class ContactController extends AppBaseController
     {
         $contacts = $this->contactRepository->all($request->all());
 
+        $statistics = [
+            (object)[
+                'name' => __('models/contacts.unread'),
+                'number' => Contact::where('read_at', null)->count(),
+                'bg_type' => 'info'
+            ],
+            (object)[
+                'name' => __('models/contacts.unreplied'),
+                'number' => Contact::where('reply_message', null)->count(),
+                'bg_type' => 'primary'
+            ],
+            (object)[
+                'name' => __('models/contacts.replied'),
+                'number' => Contact::where('reply_message', '!=', null)->count(),
+                'bg_type' => 'success'
+            ],
+            (object)[
+                'name' => __('crud.all'),
+                'number' => Contact::count(),
+                'bg_type' => 'dark'
+            ]
+        ];
+
         return view('admin.contacts.index')
-            ->with('contacts', $contacts);
+            ->with('contacts', $contacts)
+            ->with('statistics', $statistics);
     }
 
     /**

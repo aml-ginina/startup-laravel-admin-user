@@ -3,6 +3,7 @@
 @section('title', __('auth.login.provider'))
 
 @section('content')
+@include('flash::message')
 {!! Form::open(['route' => 'provider.login', 'type' => 'post', 'class' => 'form-horizontal form-material', 'id' => 'loginform']) !!}
     <h3 class="text-center m-b-20">@lang('auth.login.provider')</h3>
     <div class="form-group ">

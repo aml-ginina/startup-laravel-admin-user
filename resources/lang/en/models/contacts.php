@@ -11,7 +11,8 @@ return array (
     'subject' => 'Subject',
     'message' => 'Message',
     'read_at' => 'Read At',
-    'status' => 'Status',
+    'read' => 'Read',
+    'reply' => 'Reply',
     'reply_message' => 'Reply message',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
@@ -24,5 +25,7 @@ return array (
     'help' => 'Help',
   ],
   'read' => 'Read',
-  'unread' => 'Unread'
+  'unread' => 'Unread',
+  'replied' => 'Replied',
+  'unreplied' => 'Unreplied',
 );

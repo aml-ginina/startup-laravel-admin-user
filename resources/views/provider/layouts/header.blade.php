@@ -21,9 +21,7 @@
             <ul class="navbar-nav my-lg-0">
 
                 @include('provider.layouts.header.notifications')
-                
-                @include('provider.layouts.header.messages')
-                
+                                
                 @include('provider.layouts.header.locale')
                 
                 @include('provider.layouts.header.user_dropdown')

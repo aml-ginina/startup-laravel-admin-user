@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
      */
     public function redirectTo()
     {
-        return $this->redirectTo = route('provider.home');
+        return $this->redirectTo = route('provider.login');
     }
 
     /**

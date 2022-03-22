@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Hash;
+use DB;
 
 class ProviderController extends AppBaseController
 {
@@ -127,6 +128,8 @@ class ProviderController extends AppBaseController
             return redirect(route('admin.providers.index'));
         }
 
+        DB::beginTransaction();
+
         $input = $request->except('password');
         if(!is_null($request->password)) $input['password'] = Hash::make($request->password);
         if(!$request->block) $input['block_notes'] = null;
@@ -138,7 +141,25 @@ class ProviderController extends AppBaseController
                 $input['image'] = $filename;
             }
         }
+
         $provider = $this->providerRepository->update($input, $id);
+
+        if($provider->isDirty('approve') && $provider->approve) {
+            try {
+                Mail::send('emails.message', [
+                    'text' => "Your account is approved, you can now login to your dashboard : <a href=\"" . route('provider.login') . "\" >".route('provider.login')."</a>"
+                ], function ($message) use ($provider) {
+                    $message->from(env('MAIL_FROM_ADDRESS', 'hello@example.com'));
+                    $message->to($provider->email, $provider->name);
+                    $message->subject(__('models/providers.approved'));
+                    $message->priority(1);
+                });
+            } catch (\Throwable $th) {            
+                return response()->json(['success' => false, 'message' => __('auth.verify_email.error_sending')]);
+            }
+        }
+
+        DB::commit();
 
         Flash::success(__('messages.updated', ['model' => __('models/providers.singular')]));
         return redirect(route('admin.providers.index'));

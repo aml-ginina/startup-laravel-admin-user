@@ -25,6 +25,4 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/password', 'ProfileController@password')->name('profile.password');
 });
 
-// require __DIR__.'/auth.php';
-
 Auth::routes();

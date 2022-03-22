@@ -34,6 +34,11 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
+    public function guard()
+    {
+        return Auth::guard('admin');
+    }
+
     public function showLoginForm()
     {
         return view('admin.auth.login');
@@ -60,4 +65,13 @@ class LoginController extends Controller
             'email' => trans('auth.failed')
         ]);
     }
+    
+    // public function logout()
+    // {
+    //     Session::flush();
+        
+    //     Auth::guard('admin')->logout();
+
+    //     return redirect('home');
+    // }
 }

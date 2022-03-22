@@ -87,7 +87,7 @@ class VerificationController extends Controller
         return redirect()->route('provider.verification.notice', ['id' => $request->id]);
     }
 
-    public function verify($id)
+    public function verify($id, Request $request)
     {
         $provider = $this->providerRepository->find($id);
         if (empty($provider)) {
@@ -100,7 +100,7 @@ class VerificationController extends Controller
             return redirect()->route('provider.verification.notice', ['id' => $id]);
         }
 
-        $provider = $this->providerRepository->update(['email+verified_at' => Carbon::now()->format('Y-m-d')], $id);
+        $provider = $this->providerRepository->update(['email_verified_at' => Carbon::now()->format('Y-m-d')], $id);
 
         Flash::success(__('auth.verify_email.verify_success'));
         return redirect()->route('provider.login');

@@ -58,6 +58,7 @@
     @enderror
 </div>
 
+@if(isset($provider) && !$provider->approve)
 <!-- Approve Field -->
 <div class="form-group col-sm-12">
     <div class="custom-control custom-switch">
@@ -69,6 +70,7 @@
     <span class="invalid-feedback"> {{ $message }} </span>
     @enderror
 </div>
+@endif
 
 <!-- Block Field -->
 <div class="form-group col-sm-12">

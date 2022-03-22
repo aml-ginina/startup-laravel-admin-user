@@ -3,7 +3,7 @@
 @section('title', __('auth.reset_password.title'))
 
 @section('content')
-{!! Form::open(['route' => 'provider.password.update', 'type' => 'post', 'class' => 'form-horizontal form-material']) !!}
+{!! Form::open(['route' => 'provider.password.request', 'type' => 'post', 'class' => 'form-horizontal form-material']) !!}
     <input type="hidden" name="token" value="{{ $token }}">
     <h3 class="text-center m-b-20">@lang('auth.reset_password.title')</h3>
     <div class="form-group ">

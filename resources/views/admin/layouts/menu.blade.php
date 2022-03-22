@@ -89,12 +89,14 @@
 <li class="@if(Request::is('admin/translation*')) active @endif"> 
     <a class="waves-effect waves-dark" href="{{ route('admin.translation') }}" aria-expanded="false">
         <i class="icon-globe"></i>
-        <span class="hide-menu">
-            @lang('msg.translation')
-            @if(($menu_notifications_count = Auth::guard('admin')->user()->getNotifications(0)->count()) > 0)
-            <span class="badge badge-pill badge-cyan ml-auto">{{ $menu_notifications_count }}</span>
-            @endif
-        </span>
+        <span class="hide-menu">@lang('msg.translation')</span>
+    </a>
+</li>
+
+<li class="@if(Request::is('admin/settings*')) active @endif"> 
+    <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false">
+        <i class="icon-settings"></i>
+        <span class="hide-menu">@lang('models/settings.plural')</span>
     </a>
 </li>
 

@@ -8,7 +8,7 @@
 @endsection
 
 @section('top-buttons')
-<a href="{{ route('admin.providers.edit', $provider->id) }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-edit"></i> @lang('crud.edit')</a>
+<a href="{{ route('admin.providers.edit', $provider->id) }}" class="btn btn-info"><i class="fa fa-edit"></i> @lang('crud.edit')</a>
 @endsection
 
 @section('content')

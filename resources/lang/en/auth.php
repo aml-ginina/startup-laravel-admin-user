@@ -79,7 +79,7 @@ return array (
     'notice' => 'Before proceeding, please check your email for a verification link.If you did not receive the email,',
     'success' => 'A fresh verification link has been sent to your email address',
     'title' => 'Verify Your Email Address',
-    'verify_success' => 'You have successfully verified your email address.',
+    'verify_success' => 'You have successfully verified your email address, please wait for admin approval to login.',
   ),
   'verify_phone' => 
   array (
@@ -89,6 +89,6 @@ return array (
     'notice' => 'Before proceeding, please check your phone for a verification code.If you did not receive the sms,',
     'success' => 'A fresh verification code has been sent to your phone number',
     'title' => 'Verify Your Phone Number',
-    'verify_success' => 'You have successfully verified your phone number.',
+    'verify_success' => 'You have successfully verified your phone number., please wait for admin approval to login.',
   ),
 );
