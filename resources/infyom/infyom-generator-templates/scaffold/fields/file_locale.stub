@@ -4,7 +4,7 @@
     <div class="input-group">
         <div class="custom-file mb-3">
             {!! Form::file('$FIELD_NAME$', ['class' => 'custom-file-input' . ($errors->has('$FIELD_NAME$') ? ' is-invalid' : '')]) !!}
-            {!! Form::label('$FIELD_NAME$', isset($$MODEL_NAME) ? $$MODEL_NAME$->$FIELD_NAME$ : __('msg.updoad_file'), ['class' => 'custom-file-label form-control', 'data-browse' => __('msg.browse')]) !!}
+            {!! Form::label('$FIELD_NAME$', isset($$MODEL_NAME$) ? $$MODEL_NAME_CAMEL$->$FIELD_NAME$ : __('msg.updoad_file'), ['class' => 'custom-file-label form-control', 'data-browse' => __('msg.browse')]) !!}
         </div>
     </div>
     @error('$FIELD_NAME$')
